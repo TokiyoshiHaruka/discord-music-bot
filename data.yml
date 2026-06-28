@@ -1,0 +1,51 @@
+additionalProperties:
+    formFields:
+        - default: replace-with-discord-bot-token
+          edit: true
+          envKey: DISCORD_TOKEN
+          labelEn: Discord Bot Token
+          labelZh: Discord Bot Token
+          required: true
+          type: password
+        - default: replace-with-application-id
+          edit: true
+          envKey: DISCORD_CLIENT_ID
+          labelEn: Discord Application ID
+          labelZh: Discord 应用 ID
+          required: true
+          type: text
+        - default: ""
+          edit: true
+          envKey: DISCORD_GUILD_ID
+          labelEn: Test Guild ID
+          labelZh: 测试服务器 ID
+          required: false
+          type: text
+        - default: replace-with-a-long-random-password
+          edit: true
+          envKey: LAVALINK_PASSWORD
+          labelEn: Lavalink Password
+          labelZh: Lavalink 密码
+          required: true
+          type: password
+        - default: ""
+          edit: true
+          envKey: SPOTIFY_CLIENT_ID
+          labelEn: Spotify Client ID
+          labelZh: Spotify Client ID
+          required: false
+          type: text
+        - default: ""
+          edit: true
+          envKey: SPOTIFY_CLIENT_SECRET
+          labelEn: Spotify Client Secret
+          labelZh: Spotify Client Secret
+          required: false
+          type: password
+        - default: ""
+          edit: true
+          envKey: APPLE_MUSIC_MEDIA_API_TOKEN
+          labelEn: Apple Music API Token
+          labelZh: Apple Music API Token
+          required: false
+          type: password
