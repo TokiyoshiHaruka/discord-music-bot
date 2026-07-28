@@ -13,6 +13,8 @@ A self-hosted Discord App music bot designed for a 1Panel Docker layout. It join
 
 The bot is built for a real Discord Developer Portal App, not a temporary toy bot. It uses Discord slash commands, `discord.js`, Lavalink v4, LavaSrc metadata resolution, the official Lavalink YouTube plugin, and LavaDSPX audio normalization.
 
+The scoped [AI usage disclosure](AI_USAGE.md) covers the configuration-boundary maintenance described in this change.
+
 ## Features
 
 | Area | What it does |
@@ -116,7 +118,7 @@ docker logs --tail 100 1Panel-discord-music-bot-lavalink
 | `DISCORD_CLIENT_ID` | Yes | none | Discord Application ID. |
 | `DISCORD_GUILD_ID` | No | empty | Guild-specific command registration for fast testing. Empty means global commands. |
 | `LAVALINK_HOST` | No | `discord-lavalink` | Internal Lavalink service hostname. |
-| `LAVALINK_PORT` | No | `2333` | Internal Lavalink HTTP/WebSocket port. |
+| `LAVALINK_PORT` | No | `2333` | Internal Lavalink HTTP/WebSocket port. Non-integer or out-of-range values fall back to `2333`. |
 | `LAVALINK_PASSWORD` | Yes | none | Shared password between bot and Lavalink. Keep it secret. |
 | `SPOTIFY_CLIENT_ID` | No | empty | Optional Spotify client ID for LavaSrc. |
 | `SPOTIFY_CLIENT_SECRET` | No | empty | Optional Spotify client secret for LavaSrc. Keep it secret. |
@@ -206,9 +208,12 @@ Install dependencies and build the bot:
 
 ```bash
 cd bot
-npm install
+npm ci
+npm test
 npm run build
 ```
+
+The test suite validates environment parsing without starting Discord or Lavalink.
 
 Run locally against a reachable Lavalink node:
 

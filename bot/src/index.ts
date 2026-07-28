@@ -7,9 +7,11 @@ import {
   TextBasedChannel
 } from "discord.js";
 import { LavalinkManager } from "lavalink-client";
-import { config } from "./config.js";
+import { loadConfig } from "./config.js";
 import { commands } from "./commands.js";
 import { REST, Routes } from "discord.js";
+
+const config = loadConfig();
 
 type AnyPlayer = any;
 type AnyTrack = any;
