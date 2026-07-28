@@ -13,6 +13,8 @@
 
 这个项目按正式 Discord Developer Portal App 流程设计，不是临时测试 Bot。技术栈包括 `discord.js`、Lavalink v4、LavaSrc、Lavalink YouTube 插件和 LavaDSPX 音量归一化滤镜。
 
+本次配置边界维护的范围和 AI 使用情况见 [AI 使用说明](AI_USAGE.md)。
+
 ## 功能概览
 
 | 模块 | 说明 |
@@ -116,7 +118,7 @@ docker logs --tail 100 1Panel-discord-music-bot-lavalink
 | `DISCORD_CLIENT_ID` | 是 | 无 | Discord Application ID。 |
 | `DISCORD_GUILD_ID` | 否 | 空 | 测试服务器 ID。填写后命令只注册到该服务器，更新更快。 |
 | `LAVALINK_HOST` | 否 | `discord-lavalink` | Docker 网络内 Lavalink 服务名。 |
-| `LAVALINK_PORT` | 否 | `2333` | Lavalink 内部 HTTP/WebSocket 端口。 |
+| `LAVALINK_PORT` | 否 | `2333` | Lavalink 内部 HTTP/WebSocket 端口。非整数或超出 1-65535 的值会回退到 `2333`。 |
 | `LAVALINK_PASSWORD` | 是 | 无 | Bot 和 Lavalink 之间的共享密码，必须保密。 |
 | `SPOTIFY_CLIENT_ID` | 否 | 空 | 可选 Spotify Client ID，供 LavaSrc 使用。 |
 | `SPOTIFY_CLIENT_SECRET` | 否 | 空 | 可选 Spotify Client Secret，必须保密。 |
@@ -206,9 +208,12 @@ AUDIO_NORMALIZATION_MAX_AMPLITUDE=0.65
 
 ```bash
 cd bot
-npm install
+npm ci
+npm test
 npm run build
 ```
+
+测试只验证环境变量解析，不会启动 Discord 或 Lavalink。
 
 本地开发时需要可访问的 Lavalink：
 
