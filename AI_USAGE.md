@@ -13,3 +13,13 @@ not claim that the entire historical repository was written without AI help.
 
 No real Discord token, Lavalink password, external service credential, or live
 Discord/Lavalink process was used for the verification described by this change.
+
+## 2026-07-29 CodeQL remediation
+
+OpenAI Codex assisted with CodeQL finding triage, regression-test scaffolding,
+and review of the one-pass HTML entity decoder. The retained implementation is
+bounded by the Node test suite, TypeScript build, dependency audit, pull-request
+CI, and CodeQL analysis.
+
+No Discord token, Lavalink password, external service credential, live Discord
+session, or live Lavalink process was accessed during this maintenance change.
