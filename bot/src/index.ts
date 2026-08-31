@@ -9,6 +9,7 @@ import {
 import { LavalinkManager } from "lavalink-client";
 import { loadConfig } from "./config.js";
 import { commands } from "./commands.js";
+import { decodeHtmlEntities } from "./html-entities.js";
 import { REST, Routes } from "discord.js";
 
 const config = loadConfig();
@@ -557,7 +558,7 @@ function extractPreviewTitle(html: string): string | undefined {
 
   for (const pattern of candidates) {
     const value = html.match(pattern)?.[1];
-    if (value) return decodeHtml(value);
+    if (value) return decodeHtmlEntities(value);
   }
 
   return undefined;
@@ -582,16 +583,6 @@ function normalizePreviewTitle(title: string | undefined, host: string): string 
   }
 
   return value.length >= 2 ? value : undefined;
-}
-
-function decodeHtml(value: string) {
-  return value
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">");
 }
 
 function getTracks(result: any): AnyTrack[] {
